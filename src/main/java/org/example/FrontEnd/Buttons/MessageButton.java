@@ -5,8 +5,14 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import org.example.BackEnd.APIClient;
+import org.example.FrontEnd.TextArea.Searchbox;
 
 public class MessageButton {
+    Searchbox Searchbox = new Searchbox();
+    APIClient api = new APIClient();
+
+    
     public JButton inputButton() {
 
         ImageIcon arrow = new ImageIcon("src/main/resources/Send.png");
@@ -38,13 +44,15 @@ public class MessageButton {
             public void mousePressed(MouseEvent e) { // Cuando clickeas
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
-
+                String pregunta = Searchbox.Enter();
+                api.Chat(pregunta);
                 // Aqui falta la funcion que llame a la API
             }
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
             }
+            
         });
 
         return button;
